@@ -1,0 +1,4 @@
+openwrt/
+*.log
+.idea/
+.vscode/

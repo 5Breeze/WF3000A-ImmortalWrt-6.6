@@ -89,6 +89,7 @@ jobs:
 
           required=(
             CONFIG_TARGET_mediatek_filogic_DEVICE_kst_wf3000a
+            CONFIG_PACKAGE_kmod-mediatek_hnat
             CONFIG_PACKAGE_luci-app-passwall
             CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy
             CONFIG_PACKAGE_luci-app-ddns-go

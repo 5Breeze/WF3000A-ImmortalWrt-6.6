@@ -33,17 +33,17 @@ checkout_commit \
   2e5e6b9a5cc283098764da82ffe8b528b32f050d \
   "$custom_dir/passwall-luci"
 
-# Only take the two AdGuardHome packages, avoiding unrelated small-package overrides.
+# Only take the LuCI frontend. The openwrt-24.10 packages feed supplies the
+# AdGuardHome core version compatible with that feed's Go toolchain.
 small_tmp=/tmp/wf3000a-small-package
 rm -rf "$small_tmp"
 git init -q "$small_tmp"
 git -C "$small_tmp" remote add origin https://github.com/kenzok8/small-package.git
 git -C "$small_tmp" config core.sparseCheckout true
-printf '%s\n' '/adguardhome/' '/luci-app-adguardhome/' > "$small_tmp/.git/info/sparse-checkout"
+printf '%s\n' '/luci-app-adguardhome/' > "$small_tmp/.git/info/sparse-checkout"
 git -C "$small_tmp" fetch -q --depth=1 origin c6ffb032320ad6758dc1f4d3deb61f746ffbc11d
 git -C "$small_tmp" checkout -q --detach FETCH_HEAD
-cp -a "$small_tmp/adguardhome" "$custom_dir/adguardhome"
 cp -a "$small_tmp/luci-app-adguardhome" "$custom_dir/luci-app-adguardhome"
 rm -rf "$small_tmp"
 
-echo "Pinned PassWall and AdGuardHome packages installed"
+echo "Pinned PassWall packages and AdGuardHome LuCI frontend installed"
